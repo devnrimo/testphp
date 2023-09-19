@@ -1,0 +1,79 @@
+<?php
+// Inisialisasi variabel untuk menyimpan multiple link
+$links = [];
+
+// Inisialisasi variabel untuk hasil pilihan radio button
+$selectedOption = '';
+
+// Inisialisasi variabel untuk nama pengguna yang approve
+$approvedUser = '';
+
+// Inisialisasi variabel untuk dua teks bebas dalam email token
+$text1 = '';
+$text2 = '';
+
+// Menangani penambahan link
+if (isset($_POST['add_link'])) {
+    $newLink = $_POST['new_link'];
+    $links[] = $newLink;
+}
+
+// Menangani hasil pilihan radio button
+if (isset($_POST['option'])) {
+    $selectedOption = $_POST['option'];
+}
+
+// Menangani nama pengguna yang approve
+if (isset($_POST['approve_user'])) {
+    $approvedUser = $_POST['approve_user'];
+}
+
+// Menangani teks bebas dalam email token
+if (isset($_POST['text1'])) {
+    $text1 = $_POST['text1'];
+}
+
+if (isset($_POST['text2'])) {
+    $text2 = $_POST['text2'];
+}
+
+// Menampilkan hasil
+echo "<h2>Multiple Links:</h2>";
+if (!empty($links)) {
+    echo "<ul>";
+    foreach ($links as $link) {
+        echo "<li><a href='$link'>$link</a></li>";
+    }
+    echo "</ul>";
+} else {
+    echo "Belum ada link.";
+}
+
+echo "<h2>Hasil Pilihan Radio Button:</h2>";
+echo "Pilihan yang dipilih: $selectedOption";
+
+echo "<h2>Nama Pengguna yang Approve:</h2>";
+echo "Nama Pengguna: $approvedUser";
+
+echo "<h2>Email Token:</h2>";
+echo "Ini adalah email dengan teks 1: $text1 dan teks 2: $text2";
+
+// Form untuk menambahkan link
+echo '<form method="POST">';
+echo 'Tambahkan Link: <input type="text" name="new_link">';
+echo '<input type="submit" name="add_link" value="Add Link"><br><br>';
+
+// Form untuk pilihan radio button
+echo 'Pilihan Radio Button:';
+echo '<input type="radio" name="option" value="A"> Pilihan A';
+echo '<input type="radio" name="option" value="B"> Pilihan B<br><br>';
+
+// Form untuk nama pengguna yang approve
+echo 'Nama Pengguna yang Approve: <input type="text" name="approve_user"><br><br>';
+
+// Form untuk teks bebas dalam email token
+echo 'Teks 1 dalam Email Token: <input type="text" name="text1"><br>';
+echo 'Teks 2 dalam Email Token: <input type="text" name="text2"><br>';
+echo '<input type="submit" value="Buat Email"><br>';
+echo '</form>';
+?>
